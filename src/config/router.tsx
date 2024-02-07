@@ -3,7 +3,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import { Home, SignUp, Login, Compliance } from "../pages";
+import { Home, SignUp, Login, Compliance, Otp } from "../pages";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -11,6 +11,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Home />} />
       <Route path="/signUp" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/otp" element={<Otp />} />
       <Route path="compliance" element={<Compliance />} />
 
       {/* 404 Page */}

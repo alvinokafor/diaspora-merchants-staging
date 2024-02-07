@@ -1,7 +1,53 @@
+import { useState } from 'react';
 import { Flex, Heading, TextField, Text, Button } from "@radix-ui/themes";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
+import { signIn } from '../config/apiCall';
+// import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
+  const navigate = useNavigate ();
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+  // const [notification, setNotification] = useState('');
+
+  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    try {
+      const response = await signIn(formData);
+      console.log('Signin successful:', response.data);
+      localStorage.setItem('data', response.data);
+      toast(`${response.data.message}`,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
+      setTimeout(() => {
+        navigate('/');
+      }, 3000);
+    } catch (error) {
+      toast(`${error.message} Error Login in !`);
+      console.error('SignIn error:', error);
+    }
+  };
+
   return (
     <Flex
       align={"center"}
@@ -18,7 +64,8 @@ export default function Login() {
       >
         Diaspora
       </Heading>
-      <form className="p-6 bg-white rounded-md space-y-6 shadow-lg w-[450px]">
+      <ToastContainer />
+      <form onSubmit={handleSubmit} className="p-6 bg-white rounded-md space-y-6 shadow-lg w-[450px]">
         <Heading
           align={"center"}
           className="uppercase"
@@ -28,21 +75,31 @@ export default function Login() {
           Login
         </Heading>
 
+       
         <Flex direction={"column"} gap={"2"}>
-          <label className="font-medium text-sm">Email</label>
-          <TextField.Input size={"3"} placeholder="Enter Email" type="text" />
+            <label className="font-medium text-sm">Email</label>
+            <TextField.Input
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              size={"3"}
+              placeholder="Enter Email"
+              type="text"
+        />
         </Flex>
-
         <Flex direction={"column"} gap={"2"}>
           <label className="font-medium text-sm">Password</label>
           <TextField.Input
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
             size={"3"}
             placeholder="Enter Password"
             type="text"
           />
         </Flex>
 
-        <Button className="w-full" size={"3"}>
+        <Button type="submit" className="w-full" style={{backgroundColor:"#3e63dd"}} size={"3"}>
           Login
         </Button>
       </form>
