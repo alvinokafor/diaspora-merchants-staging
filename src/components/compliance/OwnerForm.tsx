@@ -18,7 +18,7 @@ export default function OwnerForm() {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    dob: '',
+    dob: '1707452871',
     nationality: "",
     idDocumentType: "",
     idDocumentLink: "",
@@ -63,6 +63,13 @@ export default function OwnerForm() {
     setFormData((prevState: any) => ({
       ...prevState,
       nationality: newValue,
+    }));
+  };  
+
+  const handleSelectChanges = (newValue: string) => {
+    setFormData((prevState: any) => ({
+      ...prevState,
+      idDocumentType: newValue,
     }));
   };  
   return (
@@ -133,7 +140,7 @@ export default function OwnerForm() {
 
         <Flex direction={"column"} gap={"2"}>
           <label className="font-medium text-sm">Identification Document</label>
-          <Select.Root size={"3"} defaultValue="lagos">
+          <Select.Root size={"3"} onValueChange={handleSelectChanges} defaultValue="lagos">
             <Select.Trigger />
             <Select.Content>
               <Select.Item value="lagos">Bank Verification Number</Select.Item>
@@ -146,12 +153,16 @@ export default function OwnerForm() {
           <label className="font-medium text-sm">
             Upload Idenitification Document
           </label>
-          <input type="file" />
+          <input name="idDocumentLink"
+              value={formData.idDocumentLink}
+              onChange={handleChange} type="file" />
         </Flex>
 
         <Flex direction={"column"} gap={"2"}>
           <label className="font-medium text-sm">Upload Proof of Address</label>
-          <input type="file" />
+          <input name="idAddressProofLink"
+              value={formData.idAddressProofLink}
+              onChange={handleChange} type="file" />
           <Text className="text-sm text-gray-400">
             Proof of address can be any of these documents, not more than 6
             months old:
