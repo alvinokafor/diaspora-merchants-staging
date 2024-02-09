@@ -28,6 +28,8 @@ export default function Login() {
       const response = await signIn(formData);
       console.log('Signin successful:', response.data);
       localStorage.setItem('data', response.data);
+      const token = response.data.data.token;
+      localStorage.setItem('token', token);
       toast(`${response.data.message}`,{
         position: "top-right",
         autoClose: 5000,

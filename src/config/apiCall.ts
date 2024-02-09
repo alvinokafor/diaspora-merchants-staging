@@ -13,5 +13,17 @@ const axiosInstance = axios.create({
 export const signUp = (userData: any) => axiosInstance.post('/auth/merchant/register', userData);
 export const otps = (userData: any) => axiosInstance.post('/auth/merchant/activate', userData);
 export const signIn = (userData: any) => axiosInstance.post('/auth/merchant/login', userData);
-
+export const profile = (userData: any, token: string | null) => {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return axiosInstance.put('/merchant/profile', userData, { headers });
+};
+export const contact = (userData: any, token: string | null) => {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return axiosInstance.put('/merchant/contact', userData, { headers });
+};
+  
 export default axiosInstance;

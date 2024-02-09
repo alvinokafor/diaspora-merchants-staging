@@ -11,6 +11,14 @@ const navLinks = [
     name: "Compliance",
     link: "/compliance",
   },
+  {
+    name: "Orders",
+    link: "/orders",
+  },
+  {
+    name: "Product",
+    link: "/product",
+  },
   //   {
   //     name: "Transactions",
   //     link: "/transactions",
@@ -47,7 +55,7 @@ export default function SideBar() {
             key={item.link}
             className={`${
               pathName === item.link && "bg-white/10"
-            } hover:bg-white/10 rounded-md px-4 py-2 w-[200px] capitalize`}
+            } hover:bg-white/10 rounded-md px-4 py-2 w-[185px] capitalize`}
           >
             <Link to={`${item.link}`}>{item.name}</Link>
           </Box>

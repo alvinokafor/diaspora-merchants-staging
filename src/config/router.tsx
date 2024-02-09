@@ -3,7 +3,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import { Home, SignUp, Login, Compliance, Otp } from "../pages";
+import { Home, SignUp, Login, Compliance, Otp,Orders,ProductsPage } from "../pages";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -11,7 +11,9 @@ const router = createBrowserRouter(
       <Route path="/" element={<Home />} />
       <Route path="/signUp" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/orders" element={<Orders />} />
       <Route path="/otp" element={<Otp />} />
+      <Route path="/product" element={<ProductsPage />} />
       <Route path="compliance" element={<Compliance />} />
 
       {/* 404 Page */}

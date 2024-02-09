@@ -29,7 +29,7 @@ export default function SignUp() {
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     try {
-      setNotification('An OTP has been sent to your email. Please wait...');
+      // setNotification('An OTP has been sent to your email. Please wait...');
       const response = await signUp(formData);
       console.log('Signup successful:', response.data);
       localStorage.setItem('email', formData.email);

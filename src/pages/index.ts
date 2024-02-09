@@ -4,5 +4,7 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 import Compliance from "./Compliance";
 import Otp from "./Otp";
+import Orders from "./orderPage";
+import ProductsPage from "./product";
 
-export { Home, Onboarding, SignUp, Login, Compliance,Otp };
+export { Home, Onboarding, SignUp, Login, Compliance,Otp,Orders,ProductsPage };
