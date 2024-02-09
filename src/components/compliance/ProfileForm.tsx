@@ -18,7 +18,7 @@ export default function ProfileForm() {
   const [formData, setFormData] = useState({
     businessName: "",
     description: "",
-    industry: "IT",
+    industry: "",
     cac: "",
     country: "",
     region: "",
@@ -55,15 +55,21 @@ export default function ProfileForm() {
         theme: "light",
         transition: Bounce,
         });
-      // setTimeout(() => {
-      //   navigate('/');
-      // }, 3000);
-    } catch (error) {
-      toast(`${error.message} Error Login in !`);
-      console.error('SignIn error:', error);
+    }catch (error: any) {
+      if (error instanceof Error) {
+        toast(`${error.message} Error !`);
+        console.error(' error:', error);
+      } else {
+        console.error('Unknown error:', error);
+      }
     }
   };
-
+  const handleSelectChange = (newValue: string) => {
+    setFormData((prevState: any) => ({
+      ...prevState,
+      industry: newValue,
+    }));
+  };  
   return ( 
   <Box className="p-6 bg-white max-w-[550px] mx-auto rounded-md shadow-md">
     <ToastContainer />
@@ -93,10 +99,7 @@ export default function ProfileForm() {
 
     <Flex direction={"column"} gap={"2"}>
       <label className="font-medium text-sm">Industry</label>
-      <Select.Root
-        name="industry"
-        value={formData.industry}
-        onChange={handleChange}
+      <Select.Root onValueChange={handleSelectChange} 
         defaultValue="Retail"
       >
         <Select.Trigger />

@@ -7,7 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Otp() {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
-  const otpInputs = useRef([]);
+//   const otpInputs = useRef([]);
+  const otpInputs = useRef<Array<HTMLInputElement | null>>(Array(otp.length).fill(null));
   const [email, setEmail] = useState('');
   const navigate = useNavigate ();
 
@@ -24,50 +25,54 @@ export default function Otp() {
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
-
-    // Check if all OTP digits are entered
     const isOtpEntered = newOtp.every((digit) => digit !== '');
 
     if (isOtpEntered) {
-      try {
-        const otpCode = newOtp.join('');
-        const formData ={
-            email: email,
-            otp: otpCode
+        try {
+            const otpCode = newOtp.join('');
+            const formData ={
+                email: email,
+                otp: otpCode
+            }
+            console.log(formData)
+            const response = await otps(formData);
+            console.log('OTP verified:', response.data);
+            toast(`${response.data.message} Successful`,{
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+            setTimeout(() => {
+                navigate('/login');
+            }, 3000);
+        } catch (error: any) {
+            if (error instanceof Error) {
+                toast(`${error.message} Error creating account !`);
+                console.error('OTP verification failed', error);
+            } else {
+                console.error('Unknown error:', error);
+            }
         }
-        console.log(formData)
-        const response = await otps(formData);
-        console.log('OTP verified:', response.data);
-        toast(`${response.data.message} Successful`,{
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-          });
-          setTimeout(() => {
-            navigate('/login');
-          }, 3000);
-      } catch (error) {
-        toast.error(`${error.message} Error creating account!`);
-        console.error('OTP verification failed:', error);
-      }
+      
     } else {
-      if (value !== '') {
-        if (index < otp.length - 1) {
-          otpInputs.current[index + 1].focus();
+        if (value !== '') {
+            if (index < otp.length - 1 && otpInputs.current[index + 1]) {
+                otpInputs.current[index + 1]!.focus();
+            }
+        } else {
+            if (index > 0 && otpInputs.current[index - 1]) {
+                otpInputs.current[index - 1]!.focus();
+            }
         }
-      } else {
-        if (index > 0) {
-          otpInputs.current[index - 1].focus();
-        }
-      }
     }
-  };
+};
+
 
   return (
     <Flex
@@ -105,12 +110,13 @@ export default function Otp() {
                 key={index}
                 className="border-solid border-gray-300 border rounded-md w-12 h-12 text-center"
                 type="text"
-                maxLength="1"
+                maxLength={1}
                 value={value}
                 onChange={(e) => handleChange(index, e.target.value)}
                 />
             ))}
             </Flex>
+
 
 
 

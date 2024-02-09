@@ -44,10 +44,15 @@ export default function Login() {
       setTimeout(() => {
         navigate('/');
       }, 3000);
-    } catch (error) {
-      toast(`${error.message} Error Login in !`);
-      console.error('SignIn error:', error);
+    } catch (error: any) {
+      if (error instanceof Error) {
+        toast(`${error.message} Error Login in !`);
+        console.error('SignIn error:', error);
+      } else {
+        console.error('Unknown error:', error);
+      }
     }
+    
   };
 
   return (
