@@ -16,6 +16,10 @@ const navLinks = [
     link: "/orders",
   },
   {
+    name: "Store front",
+    link: "/store",
+  },
+  {
     name: "Product",
     link: "/product",
   },

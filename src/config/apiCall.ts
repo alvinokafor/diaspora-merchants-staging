@@ -25,5 +25,19 @@ export const contact = (userData: any, token: string | null) => {
     };
     return axiosInstance.put('/merchant/contact', userData, { headers });
 };
+
+export const createstore = (userData: any, token: string | null) => {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return axiosInstance.post('/merchant/store', userData, { headers });
+};
+
+export const liststore = ( token: string | null) => {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return axiosInstance.get('/merchant/store?page=1&pageSize=10', { headers });
+};
   
 export default axiosInstance;

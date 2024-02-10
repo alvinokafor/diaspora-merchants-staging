@@ -12,7 +12,7 @@ import './style.css';
 import { Link } from 'react-router-dom';
 
 
-const StoreFront = () => {
+const StoreDetails = () => {
     const [formData, setFormData] = useState({
         name: "",
         country: "",
@@ -238,4 +238,4 @@ const StoreFront = () => {
     </AppLayout>
 )};
 
-export default StoreFront;
+export default StoreDetails;
