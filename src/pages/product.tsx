@@ -65,10 +65,10 @@ const ProductsPage = () => (
         {/* Table rows */}
         {Array.from({ length: 5 }).map((_, index) => (
           <Table.Row key={index}>
-            <Table.Cell style={{ fontWeight: "600" }}>Customer Name {index + 1}</Table.Cell>
-            <Table.Cell style={{ fontWeight: "600" }}>$200</Table.Cell>
-            <Table.Cell style={{ fontWeight: "600" }}>4</Table.Cell>
-            <Table.Cell style={{ fontWeight: "600" }}>
+            <Table.Cell style={{ fontWeight: "500" }}>Customer Name {index + 1}</Table.Cell>
+            <Table.Cell style={{ fontWeight: "500" }}>$200</Table.Cell>
+            <Table.Cell style={{ fontWeight: "500" }}>4</Table.Cell>
+            <Table.Cell style={{ fontWeight: "500" }}>
               <TextField.Root size="2">
                 <Flex gap="2">
                   <Switch defaultChecked />

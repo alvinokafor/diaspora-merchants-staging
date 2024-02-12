@@ -1,48 +1,34 @@
-import { Box, Heading, Text } from "@radix-ui/themes";
+import { Box, Heading } from "@radix-ui/themes";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { FiHome, FiCheckCircle, FiShoppingBag, FiShoppingCart, FiBox } from "react-icons/fi";
 
 const navLinks = [
   {
     name: "Home",
     link: "/",
+    icon: <FiHome />,
   },
   {
     name: "Compliance",
     link: "/compliance",
+    icon: <FiCheckCircle />,
   },
   {
     name: "Orders",
     link: "/orders",
+    icon: <FiShoppingBag />,
   },
   {
     name: "Store front",
     link: "/store",
+    icon: <FiShoppingCart />,
   },
   {
     name: "Product",
     link: "/product",
+    icon: <FiBox />,
   },
-  //   {
-  //     name: "Transactions",
-  //     link: "/transactions",
-  //   },
-  //   {
-  //     name: "Payouts",
-  //     link: "/payouts",
-  //   },
-  //   {
-  //     name: "Products",
-  //     link: "/products",
-  //   },
-  //   {
-  //     name: "Storefront",
-  //     link: "/storefront",
-  //   },
-  //   {
-  //     name: "Orders",
-  //     link: "/orders",
-  //   },
 ];
 
 export default function SideBar() {
@@ -59,8 +45,9 @@ export default function SideBar() {
             key={item.link}
             className={`${
               pathName === item.link && "bg-white/10"
-            } hover:bg-white/10 rounded-md px-4 py-2 w-[185px] capitalize`}
+            } hover:bg-white/10 rounded-md px-4 py-2 w-[185px] capitalize flex items-center space-x-2`}
           >
+            {item.icon}
             <Link to={`${item.link}`}>{item.name}</Link>
           </Box>
         ))}

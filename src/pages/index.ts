@@ -7,5 +7,6 @@ import Otp from "./Otp";
 import Orders from "./orderPage";
 import ProductsPage from "./product";
 import StoreFront from "./storeFront";
+import StoreDetails from "./storeDetails";
 
-export { Home, Onboarding, SignUp, Login, Compliance,Otp,Orders,ProductsPage,StoreFront };
+export { Home, Onboarding, SignUp, Login, Compliance,Otp,Orders,ProductsPage,StoreFront,StoreDetails };

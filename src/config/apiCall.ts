@@ -39,5 +39,26 @@ export const liststore = ( token: string | null) => {
     };
     return axiosInstance.get('/merchant/store?page=1&pageSize=10', { headers });
 };
-  
+
+export const liststoreDetail = (id: any, token: string | null) => {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return axiosInstance.get(`/merchant/store/${id}`, { headers });
+};
+
+export const listproductDetail = (id: any, token: string | null) => {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return axiosInstance.get(`/merchant/product?page=1&pageSize=10&storeId=${id}`, { headers });
+};
+
+export const createProduct = (userData: any, token: string | null) => {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return axiosInstance.post('/merchant/product', userData, { headers });
+};
+
 export default axiosInstance;

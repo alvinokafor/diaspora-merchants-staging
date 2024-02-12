@@ -109,10 +109,10 @@ const FilterSearchExport = () => (
               {/* <Table.Cell>
                 <CheckBoxOutlineBlank />
               </Table.Cell> */}
-              <Table.Cell style={{fontWeight:"600"}}>Customer Name {index + 1}</Table.Cell>
+              <Table.Cell style={{fontWeight:"500"}}>Customer Name {index + 1}</Table.Cell>
               <Table.Cell style={{fontWeight:"600"}}>$200</Table.Cell>
               <Table.Cell style={{fontWeight:"600"}} >Feb 7, 2024</Table.Cell>
-              <Table.Cell style={{fontWeight:"600"}}>2:30</Table.Cell>
+              <Table.Cell style={{fontWeight:"500"}}>2:30</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
@@ -131,7 +131,7 @@ export default function Orders() {
             </Box>
             <Box style={{ backgroundColor: "#fbfbfb", flex: '1', maxHeight: '450px', overflowY: 'auto',width:"100%" }}>
              
-            <h2 style={{padding:40}}>Order 1514843</h2>
+            <h2 style={{padding:40,fontWeight:"600"}}>Order 1514843</h2>
               <Tabs.Root defaultValue="overview">
                 <Tabs.List size="2">
                 <Tabs.Trigger className="flex items-center gap-4" value="overview">

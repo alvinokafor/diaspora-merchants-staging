@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import './style.css';
 import { Link } from 'react-router-dom';
-
+import { FiSearch } from 'react-icons/fi';
 
 const StoreFront = () => {
     const [formData, setFormData] = useState({
@@ -100,14 +100,15 @@ const StoreFront = () => {
         {/* Icons */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
     
-        <TextField.Root style={{marginLeft:20}}>
-            <TextField.Input placeholder="Search order id or cus...." />
+        <TextField.Root style={{ display: 'flex', alignItems: 'center', marginLeft: 20 }}>
+        <FiSearch style={{ marginRight: 2,marginLeft: 5, color: '#000' }} />
+        <TextField.Input placeholder="Search order id or cus...." />
         </TextField.Root>
 
   <Dialog.Root>
     <Dialog.Trigger asChild>
-    <Button className="Button violet" variant="solid" style={{ marginLeft: 'auto' }}>
-       <Add />Add Product
+    <Button className="Button violet" variant="solid" style={{ marginLeft: 'auto',backgroundColor:"#000",color:"#fff"  }}>
+       <Add />Create Store
       </Button>
     </Dialog.Trigger>
     <Dialog.Portal>
@@ -197,14 +198,10 @@ const StoreFront = () => {
       </Dialog.Content>
     </Dialog.Portal>
   </Dialog.Root>
+  <hr/>
         </div>
     {/* Search bar */}
-    </Box>
-
-
-        {/* Second Card */}
-        <Box style={{ padding: '20px', backgroundColor: '#fff', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
-
+    < br/>
 
         <Table.Root style={{ width: '100%' }}>
             <Table.Body>
@@ -220,7 +217,7 @@ const StoreFront = () => {
                 </Table.Row>
                 {allstore && allstore.map(store => (
                     <Table.Row key={store['id']}>
-                        <Table.Cell style={{color:"blue"}}> <Link to={`/store/${store['id']}`}>{store['name']}</Link></Table.Cell>
+                        <Table.Cell style={{color:"blue"}}> <Link to={`/store-details/${store['id']}`}>{store['name']}</Link></Table.Cell>
                         <Table.Cell>{store['currency']}</Table.Cell>
                         <Table.Cell>{store['status']}</Table.Cell>
                         <Table.Cell>{store['location']}</Table.Cell>
