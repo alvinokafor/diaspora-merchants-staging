@@ -1,39 +1,39 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { Flex, Heading, TextField, Text, Button } from "@radix-ui/themes";
-import { Link, useNavigate  } from "react-router-dom";
-import { signUp } from '../config/apiCall';
+import { Link, useNavigate } from "react-router-dom";
+import { signUp } from "../config/apiCall";
 // import { NotificationContainer, NotificationManager } from 'react-notifications';
-import { Bounce, ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SignUp() {
-  const navigate = useNavigate ();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    businessName: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    password: '',
+    businessName: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
   });
   // const [notification, setNotification] = useState('');
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+  const handleChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
       // setNotification('An OTP has been sent to your email. Please wait...');
       const response = await signUp(formData);
-      console.log('Signup successful:', response.data);
-      localStorage.setItem('email', formData.email);
-      toast(`${response.data.message} Successful`,{
+      console.log("Signup successful:", response.data);
+      localStorage.setItem("email", formData.email);
+      toast(`${response.data.message} Successful`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -43,13 +43,14 @@ export default function SignUp() {
         progress: undefined,
         theme: "light",
         transition: Bounce,
-        });
+      });
       setTimeout(() => {
-        navigate('/otp');
+        navigate("/otp");
       }, 3000);
     } catch (error) {
+      //@ts-expect-error no types
       toast(`${error.message} Error creating account!`);
-      console.error('Signup error:', error);
+      console.error("Signup error:", error);
     }
   };
 
@@ -61,8 +62,11 @@ export default function SignUp() {
       gap={"4"}
       className="bg-[url('/background.png')] bg-cover bg-no-repeat min-h-screen "
     >
-       <ToastContainer />
-      <form onSubmit={handleSubmit} className="p-6 bg-white rounded-md space-y-6 shadow-lg max-w-[550px]">
+      <ToastContainer />
+      <form
+        onSubmit={handleSubmit}
+        className="p-6 bg-white rounded-md space-y-6 shadow-lg max-w-[550px]"
+      >
         <Heading
           align={"center"}
           className="uppercase"
@@ -146,7 +150,12 @@ export default function SignUp() {
           />
         </Flex>
 
-        <Button type="submit" className="w-full" style={{backgroundColor:"#3e63dd"}} size={"3"}>
+        <Button
+          type="submit"
+          className="w-full"
+          style={{ backgroundColor: "#3e63dd" }}
+          size={"3"}
+        >
           Create My Account
         </Button>
       </form>
