@@ -18,8 +18,18 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+      // Path Alias
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@mui/material": ["node_modules/@mui/material"],
+      "@mui/icons-material": ["node_modules/@mui/icons-material"]
+    },
   },
+
+  
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

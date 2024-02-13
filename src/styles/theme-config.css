@@ -1,0 +1,7 @@
+.radix-themes {
+  --default-font-family: var(--font-openSans);
+}
+
+.radix-themes {
+  --cursor-button: pointer;
+}
