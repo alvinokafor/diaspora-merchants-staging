@@ -3,9 +3,7 @@ import { createstore, liststore } from "../config/apiCall";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Add } from "@mui/icons-material";
-import { Button, TextField } from "@radix-ui/themes";
-import { Box } from "@radix-ui/themes";
-import { Table } from "@radix-ui/themes";
+import { Button, TextField, Flex, Select, Box, Table } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import "./style.css";
@@ -90,6 +88,25 @@ const StoreFront = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleSelectChange = (newValue: string) => {
+    setFormData((prevState: any) => ({
+      ...prevState,
+      country: newValue,
+    }));
+  };
+  const categorySelectChange = (newValue: string) => {
+    setFormData((prevState: any) => ({
+      ...prevState,
+      category: newValue,
+    }));
+  };
+  const subcategorySelectChange = (newValue: string) => {
+    setFormData((prevState: any) => ({
+      ...prevState,
+      subCategory: newValue,
+    }));
+  };
   return (
     <AppLayout>
       <ToastContainer />
@@ -146,91 +163,97 @@ const StoreFront = () => {
               <Dialog.Portal>
                 <ToastContainer />
                 <Dialog.Overlay className="DialogOverlay" />
-                <Dialog.Content className="DialogContent">
+
+                <Dialog.Content
+                  className="DialogContent"
+                  style={{ overflowY: "auto" }}
+                >
                   <form className="space-y-4" onSubmit={handleSubmit}>
-                    <Dialog.Title className="DialogTitle">
-                      Create Store
-                    </Dialog.Title>
+                    {/* <Dialog.Title className="DialogTitle">Create Store</Dialog.Title> */}
                     <Dialog.Description className="DialogDescription">
-                      Create Your Store
+                      Create Store
                     </Dialog.Description>
-                    <fieldset className="Fieldset">
-                      <label className="Label" htmlFor="name">
-                        Name
-                      </label>
-                      <input
-                        className="Input"
-                        id="name"
+
+                    <Flex direction={"column"} gap={"2"}>
+                      <label className="font-medium text-sm">Name</label>
+                      <TextField.Input
                         name="name"
+                        className="Input"
                         value={formData.name}
                         onChange={handleChange}
-                        defaultValue="name"
+                        placeholder="Enter Name"
+                        type="text"
                       />
-                    </fieldset>
-                    <fieldset className="Fieldset">
-                      <label className="Label" htmlFor="country">
-                        Country
-                      </label>
-                      <input
-                        className="Input"
-                        id="country"
-                        name="country"
-                        value={formData.country}
-                        onChange={handleChange}
-                        defaultValue="country"
-                      />
-                    </fieldset>
-
-                    <fieldset className="Fieldset">
-                      <label className="Label" htmlFor="location">
-                        location
-                      </label>
-                      <input
-                        className="Input"
-                        id="location"
+                    </Flex>
+                    <Flex direction={"column"} gap={"4"}>
+                      <label className="font-medium text-sm">Country</label>
+                      <Select.Root
+                        size={"3"}
+                        onValueChange={handleSelectChange}
+                        defaultValue="none"
+                      >
+                        <Select.Trigger />
+                        <Select.Content>
+                          <Select.Item value="none">Select Country</Select.Item>
+                          <Select.Item value="NG">Nigerian</Select.Item>
+                          <Select.Item value="USA">USA</Select.Item>
+                        </Select.Content>
+                      </Select.Root>
+                    </Flex>
+                    <Flex direction={"column"} gap={"2"}>
+                      <label className="font-medium text-sm">Address</label>
+                      <TextField.Input
                         name="location"
+                        className="Input"
                         value={formData.location}
                         onChange={handleChange}
-                        defaultValue="location"
+                        placeholder="Enter Address"
+                        type="text"
                       />
-                    </fieldset>
-                    <fieldset className="Fieldset">
-                      <label className="Label" htmlFor="location">
-                        Category
-                      </label>
-                      <select
-                        className="Input"
-                        id="category"
-                        name="category"
-                        value={formData.category}
-                        onChange={handleChange}
+                    </Flex>
+
+                    <Flex direction={"column"} gap={"4"}>
+                      <label className="font-medium text-sm">Category</label>
+                      <Select.Root
+                        size={"3"}
+                        onValueChange={categorySelectChange}
+                        defaultValue="none"
                       >
-                        <option value="">Select category</option>
-                        <option value="African">African</option>
-                        <option value="Financial">Financial</option>
-                        <option value="Clothing">Clothing</option>
-                        <option value="Educational">Educational</option>
-                        <option value="Health">Health</option>
-                        <option value="Legal">Legal</option>
-                      </select>
-                    </fieldset>
-                    <fieldset className="Fieldset">
-                      <label className="Label" htmlFor="location">
-                        Subcategory
-                      </label>
-                      <select
-                        className="Input"
-                        id="subcategory"
-                        name="subCategory"
-                        value={formData.subCategory}
-                        onChange={handleChange}
+                        <Select.Trigger />
+                        <Select.Content>
+                          <Select.Item value="none">
+                            Select category
+                          </Select.Item>
+                          <Select.Item value="African">African</Select.Item>
+                          <Select.Item value="Financial">Financial</Select.Item>
+                          <Select.Item value="Clothing">Clothing</Select.Item>
+                          <Select.Item value="Educational">
+                            Educational
+                          </Select.Item>
+                          <Select.Item value="Health">Health</Select.Item>
+                          <Select.Item value="Legal">Legal</Select.Item>
+                        </Select.Content>
+                      </Select.Root>
+                    </Flex>
+
+                    <Flex direction={"column"} gap={"4"}>
+                      <label className="font-medium text-sm">SubCategory</label>
+                      <Select.Root
+                        size={"3"}
+                        onValueChange={subcategorySelectChange}
+                        defaultValue="none"
                       >
-                        <option value="">Select subcategory</option>
-                        <option value="Groceries">Groceries</option>
-                        <option value="Fashional">Fashional</option>
-                        <option value="Export">Export</option>
-                      </select>
-                    </fieldset>
+                        <Select.Trigger />
+                        <Select.Content>
+                          <Select.Item value="none">
+                            Select subcategory
+                          </Select.Item>
+                          <Select.Item value="Groceries">Groceries</Select.Item>
+                          <Select.Item value="Fashional">Fashional</Select.Item>
+                          <Select.Item value="Export">Export</Select.Item>
+                        </Select.Content>
+                      </Select.Root>
+                    </Flex>
 
                     <div
                       style={{
@@ -240,19 +263,31 @@ const StoreFront = () => {
                       }}
                     >
                       <Dialog.Close asChild>
-                        <button className="Button green">Cancel</button>
+                        <button
+                          style={{
+                            backgroundColor: "lightgray",
+                            color: "#000",
+                          }}
+                          className="Button green"
+                        >
+                          Cancel
+                        </button>
                       </Dialog.Close>
-                      <button type="submit" className="Button green">
+                      <button
+                        type="submit"
+                        style={{ backgroundColor: "#000", color: "#fff" }}
+                        className="Button green"
+                      >
                         Save changes
                       </button>
                     </div>
-                  </form>
 
-                  <Dialog.Close asChild>
-                    <button className="IconButton" aria-label="Close">
-                      ...
-                    </button>
-                  </Dialog.Close>
+                    <Dialog.Close asChild>
+                      <button className="IconButton" aria-label="Close">
+                        ...
+                      </button>
+                    </Dialog.Close>
+                  </form>
                 </Dialog.Content>
               </Dialog.Portal>
             </Dialog.Root>
