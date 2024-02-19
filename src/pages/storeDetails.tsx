@@ -244,49 +244,7 @@ const StoreDetails = () => {
         <Dialog.Root>
             <Dialog.Trigger asChild>
             <Button className="Button violet" variant="solid" style={{ marginLeft: 'auto',backgroundColor:"#000",color:"#fff" }}>
-            <Add />Create Order
-            </Button>
-            </Dialog.Trigger>
-            <Dialog.Portal>
-            <ToastContainer />
-            <Dialog.Overlay className="DialogOverlay" />
-            <Dialog.Content className="DialogContent">
-            
-
-                <Dialog.Close asChild>
-                <Button className="IconButton" aria-label="Close">
-                ...
-                </Button>
-                </Dialog.Close>
-            </Dialog.Content>
-            </Dialog.Portal>
-        </Dialog.Root>
-        </div>
-    {/* Search bar */}
-    {/* </Box>
-
-
-    <Box style={{ padding: '20px', backgroundColor: '#fff', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}> */}
-<hr/>
-<h2 style={{padding:15}}>KingStore</h2>
-    <Tabs.Root defaultValue="orders">
-                <Tabs.List size="2">
-                <Tabs.Trigger className="flex items-center gap-4" value="orders">
-                    <p>Orders</p>
-                </Tabs.Trigger>
-                <Tabs.Trigger value="product">Products</Tabs.Trigger>
-              </Tabs.List>
-
-        <Box px="4" pt="3" pb="2">
-          <Tabs.Content value="orders">
-            <OrderTab data={storeDetail}/>
-          </Tabs.Content>
-
-          <Tabs.Content value="product">
-          <Dialog.Root >
-            <Dialog.Trigger asChild>
-            <Button className="Button violet" variant="solid" style={{ margin: 10,backgroundColor:"#000",color:"#fff" }}>
-            New Product
+            <Add />Create New Product
             </Button>
             </Dialog.Trigger>
             <Dialog.Portal>
@@ -390,7 +348,29 @@ const StoreDetails = () => {
                 </form>
             </Dialog.Content>
             </Dialog.Portal>
-            </Dialog.Root>
+        </Dialog.Root>
+        </div>
+    {/* Search bar */}
+    {/* </Box>
+
+
+    <Box style={{ padding: '20px', backgroundColor: '#fff', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}> */}
+<hr/>
+<h2 style={{padding:15}}>KingStore</h2>
+    <Tabs.Root defaultValue="orders">
+                <Tabs.List size="2">
+                <Tabs.Trigger className="flex items-center gap-4" value="orders">
+                    <p>Orders</p>
+                </Tabs.Trigger>
+                <Tabs.Trigger value="product">Products</Tabs.Trigger>
+              </Tabs.List>
+
+        <Box px="4" pt="3" pb="2">
+          <Tabs.Content value="orders">
+            <OrderTab data={storeDetail}/>
+          </Tabs.Content>
+
+          <Tabs.Content value="product">
             <ProductTab data={productDetail} />
           </Tabs.Content>
 
