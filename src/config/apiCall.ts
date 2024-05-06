@@ -2,6 +2,67 @@ import axios from "axios";
 
 const baseURL = "https://diaspora.smartpowerbilling.com/api/";
 
+interface IStore {
+  _id: string;
+  merchantId: string;
+  name: string;
+  currency: string;
+  status: string;
+  openingTime: null;
+  closeTime: null;
+  location: string;
+  category: string;
+  subCategory: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface IProduct {
+  _id: string;
+  storeId: string;
+  name: string;
+  description: string;
+  currency: string;
+  price: 630;
+  quantity: 2;
+  imgUrl: string;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface IOrder {
+  _id: string;
+  createdAt: string;
+  store: IStore;
+  product: IProduct;
+  order: {
+    _id: string;
+    userId: string;
+    transactionId: string;
+    reference: string;
+    status: string;
+    address: string;
+    statusHistory: [
+      {
+        status: string;
+        _id: string;
+      },
+      {
+        status: string;
+        _id: string;
+      }
+    ];
+    createdAt: string;
+    updatedAt: string;
+  };
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  orderAddress: string;
+  productName: string;
+  price: number;
+  orderRef: string;
+}
+
 const axiosInstance = axios.create({
   baseURL,
   timeout: 5000,
@@ -65,6 +126,15 @@ export const createProduct = (userData: any, token: string | null) => {
     Authorization: `Bearer ${token}`,
   };
   return axiosInstance.post("/merchant/product", userData, { headers });
+};
+
+export const getOrders = (token: string | null) => {
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  return axiosInstance.get("/merchant/orders?page=1&pageSize=10", {
+    headers,
+  });
 };
 
 export default axiosInstance;

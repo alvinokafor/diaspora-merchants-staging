@@ -24,6 +24,7 @@
     "axios": "^1.6.7",
     "chart.js": "^4.4.1",
     "framer-motion": "^11.0.3",
+    "postcss-import": "^16.0.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
@@ -33,6 +34,7 @@
     "react-toastify": "^10.0.4"
   },
   "devDependencies": {
+    "@types/chart.js": "^2.9.41",
     "@types/node": "^20.11.10",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
